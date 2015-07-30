@@ -47,7 +47,7 @@
 		$('#bajar').css('display','none');
 
 		if(localStorage.getItem("lis_lec_ret")==null && localStorage.getItem("lis_parcial_ret")==null){
-			$.getJSON('http://127.0.0.1:8000/transferencias/coneccion/retorcedora/?callback=?')
+			$.getJSON('http://192.168.1.42/transferencias/coneccion/retorcedora/?callback=?')
 			.done(function(response) {
 				console.log('exito');
 				localStorage.setItem("turno_val_ret", response.turno);
@@ -82,7 +82,7 @@
 		};
 		$('form').on('submit',function(evt){
 			evt.preventDefault();
-			$.getJSON('http://127.0.0.1:8000/transferencias/bajar/maquinas/retorcedora/?callback=?', mostrar_maquinas)
+			$.getJSON('http://192.168.1.42/transferencias/bajar/maquinas/retorcedora/?callback=?', mostrar_maquinas)
 				.done(function() {
 					$('.alert-success').show().delay(5000).fadeOut();
 					console.log('exito');
@@ -92,7 +92,7 @@
 			  		console.log('fallo');
 			  	});			
 
-			$.getJSON('http://127.0.0.1:8000/transferencias/bajar/turnos/?callback=?', mostrar_turnos)
+			$.getJSON('http://192.168.1.42/transferencias/bajar/turnos/?callback=?', mostrar_turnos)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -102,7 +102,7 @@
 			    	console.log('fallo');
 			  	});	
 
-			$.getJSON('http://127.0.0.1:8000/transferencias/bajar/tiporetorcedora/?callback=?', mostrar_tipo_retorcedora)
+			$.getJSON('http://192.168.1.42/transferencias/bajar/tiporetorcedora/?callback=?', mostrar_tipo_retorcedora)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -112,7 +112,7 @@
 			    	console.log('fallo');
 			  	});	
 
-			$.getJSON('http://127.0.0.1:8000/transferencias/bajar/lineas/?callback=?', mostrar_lineas)
+			$.getJSON('http://192.168.1.42/transferencias/bajar/lineas/?callback=?', mostrar_lineas)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -122,7 +122,7 @@
 			    	console.log('fallo');
 			  	});
 
-			$.getJSON('http://127.0.0.1:8000/transferencias/bajar/motivosparo/?callback=?', mostrar_motivos_paro)
+			$.getJSON('http://192.168.1.42/transferencias/bajar/motivosparo/?callback=?', mostrar_motivos_paro)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
