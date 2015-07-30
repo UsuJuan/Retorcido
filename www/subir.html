@@ -57,7 +57,7 @@
 		$('#mensajes').append("<div id='mensajitos' ></div>");
 		$('#subir').css('display','none');
 
-		$.getJSON('http://127.0.0.1:8000/transferencias/coneccion/retorcedora/?callback=?')
+		$.getJSON('http://10.240.17.56/transferencias/coneccion/retorcedora/?callback=?')
 		.done(function() {
 			console.log('exito');
 			$('#subir').css('display','inline');
@@ -117,7 +117,7 @@
 			}
 
 			$.ajax({
-				url: 'http://127.0.0.1:8000/transferencias/subir/retorcedora/',
+				url: 'http://10.240.17.56/transferencias/subir/retorcedora/',
 				type: 'POST',
 				crossDomain: true,
 				data: {					
