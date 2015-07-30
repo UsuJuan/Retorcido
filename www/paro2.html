@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Paro</title>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>	
+	<!-- Button trigger modal 1 -->
+	<button id="modalbox" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#myModal">
+	  	Modal
+	</button>
+	<!-- Modal 1 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+		      <div class="modal-header">
+			        <h4 class="modal-title alert alert-warning" id="myModalLabel">Mensaje</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<div class="alert alert-info" id="mensajes" role="alert">
+
+		      		</div>
+		      </div>
+		      <div class="modal-footer text-left">
+			        <button type="button" data-dismiss="modal" id="conservar" class="btn-lg btn-primary" >Agregar</button>
+			        <button type="button" data-dismiss="modal" id="cancelar" class="btn-lg btn-danger" >Cancelar</button>
+		      </div>
+	    	</div>
+	  	</div>
+	</div>
+	<!-- Modal 1 -->
+	<div class="text-right">
+		<a href="index.html" class="icono-menu" >
+			MENU <span class="glyphicon glyphicon-align-justify" ></span>
+		</a>
+	</div>
+	<form class="form-horizontal my_form" role="form" name="form_paros" method="POST" >
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="dia" class="control-label label_grande">FECHA</label>
+		   	</div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" id="dia" name="dia" autocomplete="off" placeholder="Día" >
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" id="mes" name="mes" autocomplete="off" placeholder="Mes" >
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" id="annio" name="annio" autocomplete="off" placeholder="Año" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-fecha" role="alert">
+		      		<h2>ERROR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="primera_maquina">
+			<div class="form-group">
+			   	<div class="text-center">	
+			   		<label for="maquina_uno" class="control-label label_grande">MAQUINA</label>
+			   	</div>
+			   	<div class="col-md-3"></div>
+			    <div class="col-sm-10 col-md-6">
+			      	<select name="maquina_uno" id="maquina_uno" class="form-control input_grande" required="required" >
+					</select>
+			    </div>
+			    <div class="row">
+			    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-maquina1" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="text-center">
+			   		<label for="nombre1_1" class="control-label label_grande">NOMBRE</label>
+			   	</div>
+			   	<div class="col-sm-6 col-xs-6">
+			      	<input type="number" class="form-control input_grande" id="nombre1_1" name="nombre1_1" autocomplete="off" >
+			    </div>
+			    <div class="col-sm-1 col-xs-1">
+			    	<label class="control-label label_grande">.</label>
+			    </div>
+			    <div class="col-sm-5 col-xs-5">
+			      	<input type="number" class="form-control input_grande" id="nombre1_2" name="nombre1_2" autocomplete="off" >
+			    </div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+		    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre1" role="alert">
+		      		<h2>ERROR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="segunda_maquina">
+			<div class="form-group">
+			   	<div class="text-center">	
+			   		<label for="maquina_dos" class="control-label label_grande">MAQUINA</label>
+			   	</div>
+			   	<div class="col-md-3"></div>
+			    <div class="col-sm-10 col-md-6">
+			      	<select name="maquina_dos" id="maquina_dos" class="form-control input_grande" required="required" >
+					</select>
+			    </div>
+			    <div class="row">
+			    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-maquina2" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="text-center">
+			   		<label for="nombre2_1" class="control-label label_grande">NOMBRE</label>
+			   	</div>
+			   	<div class="col-sm-6 col-xs-6">
+			      	<input type="number" class="form-control input_grande" id="nombre2_1" name="nombre2_1" autocomplete="off" >
+			    </div>
+			    <div class="col-sm-1 col-xs-1">
+			    	<label class="control-label label_grande">.</label>
+			    </div>
+			    <div class="col-sm-5 col-xs-5">
+			      	<input type="number" class="form-control input_grande" id="nombre2_2" name="nombre2_2" autocomplete="off" >
+			    </div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+		    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre2" role="alert">
+		      		<h2>ERROR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="num_puestos" class="form-group">
+			<div class="text-center">
+		   		<label for="puestos" class="control-label label_grande">PUESTOS</label>
+		   	</div>
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="puestos" name="puestos" autocomplete="off" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-puestos" role="alert">
+	      		<h2>ERROR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+		   	<div class="text-center">
+		   		<label for="hora_inicio" class="control-label label_grande">HORA INICIO</label>
+		   	</div>
+		   	<div class="col-sm-1 col-xs-1"></div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" maxlength="2" id="hora_inicio" name="hora_inicio" autocomplete="off" placeholder="HH" >		      
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">:</label>
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		    	<input type="number" class="form-control input_grande" maxlength="2" id="minutos_inicio" name="minutos_inicio" autocomplete="off" placeholder="MM" >
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-2 col-xs-2"></div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="alert alert-danger text-center" id="error-hora-inicio" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+			    <div class="col-sm-2 col-xs-2"></div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="alert alert-danger text-center" id="error-minutos-inicio" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="text-center">
+		   		<label for="hora_fin" class="control-label label_grande">HORA FIN</label>
+		   	</div>
+		   	<div class="col-sm-1 col-xs-1"></div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" maxlength="2" id="hora_fin" name="hora_fin" autocomplete="off" placeholder="HH" >		      
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">:</label>
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		    	<input type="number" class="form-control input_grande" maxlength="2" id="minutos_fin" name="minutos_fin" autocomplete="off" placeholder="MM" >
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-2 col-xs-2"></div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="alert alert-danger text-center" id="error-hora-fin" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+			    <div class="col-sm-2 col-xs-2"></div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="alert alert-danger text-center" id="error-minutos-fin" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <div class="text-center">	
+		    	<label for="motivo_paro" class="control-label label_grande">MOTIVO DE PARO</label>
+		    </div>
+		    <div class="col-md-3"></div>
+		    <div class="col-sm-10 col-md-6">
+		      	<select name="motivo_paro" id="motivo_paro" class="form-control input_grande">
+		      		<option value="" >Seleccionar</option>
+				</select>
+		    </div>
+		    <div class="row">
+				<div class="col-sm-10 col-md-6">
+					<div class="alert alert-danger text-center" id="error-motivo">
+			      		<h2>COMPLETAR!</h2>
+			      	</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+		    <div class="col-sm-offset-3">
+		      <a href="paro1.html" class="btn btn-danger boton" >ATRAS</a>
+		      <button type="submit" name="guardar" class="btn btn-primary boton">GUARDAR</button>		      
+		    </div>
+		</div>
+	</form>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/bootstrap.js" ></script>
+<script>	
+	var MyJson_paros;
+	var array_paros = [];
+	var array02 = [];
+	var orden1 = 0;
+	var orden2 = 0;
+	if (localStorage.getItem("lis_paros_ret")!=null){
+		array_paros = JSON.parse(localStorage.getItem("lis_paros_ret"));
+	}else{
+		array_paros = [];
+	}
+	// FECHA Y HORA
+		var fecha = new Date();
+		hora = fecha.getHours();
+		// if (hora<=6){
+		// 	fecha.setDate(fecha.getDate()-1);
+		// }
+		dia = fecha.getDate();
+		mes = fecha.getMonth()+1;
+		annio = fecha.getFullYear();
+		if(dia<10) dia = String("0"+dia);
+		if(mes<10) mes = String("0"+mes);		
+		fecha_string = String(annio+"-"+mes+"-"+dia);
+		minutos = fecha.getMinutes();
+		if(hora<10)	hora = String("0"+hora);
+		if(minutos<10) minutos = String("0"+minutos);
+		hora_string = String(hora+":"+minutos+":55");
+	// FECHA Y HORA
+	// ID
+	if(localStorage.getItem('id_paro_ret')==null){
+		localStorage.setItem('id_paro_ret',1);
+	}else{
+		id = parseInt(localStorage.getItem("id_paro_ret"));
+		localStorage.setItem('id_paro_ret',id+1);
+	}
+	// ID
+
+	$(function(){
+		// Tipo preparacion
+		array_tb = JSON.parse(localStorage.getItem("tipo_retorcedoras"));
+		for(var i=0;i<array_tb.length;i++){
+			$('#maquina_uno').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
+			$('#maquina_dos').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
+		}
+		// Motivos Paro
+		array_tt = JSON.parse(localStorage.getItem("motivos_paro"));
+		for(var i=0;i<array_tt.length;i++){
+			$('#motivo_paro').append('<option value='+array_tt[i].id+' >'+array_tt[i].descripcion+'</option>');
+		}
+		annio_2 = String(annio).substring(2,4);
+		$('#dia').val(dia);
+		$('#mes').val(mes);
+		$('#annio').val(annio_2);
+
+	    $('.alert-danger').css('display','none');	    
+		// PARO EN BLOQUE
+		function SacarMaquinas(o1,o2,hi,hf,fecha){
+			array01 = JSON.parse(localStorage.getItem('maquinas_ret'));
+			var array_p = [];
+			if(localStorage.getItem("lis_paros_ind_ret")!=null){
+				array_p = JSON.parse(localStorage.getItem("lis_paros_ind_ret"));
+			}
+			for (i=0;i<array01.length;i++){
+				if(array01[i].orden_paro >= o1 && array01[i].orden_paro <= o2){
+					json_individual = {
+						"id" : localStorage.getItem("id_paro_ret"),
+						"maquina" : array01[i].tipomaquina,
+						"nombre" : array01[i].nombre,
+						"hora_inicio" : hi,
+						"hora_fin" : hf,
+						"fecha" : fecha,
+						"tipo" : 1,
+					};
+					array_p.push(json_individual);
+				}
+			}
+			localStorage.setItem("lis_paros_ind_ret",JSON.stringify(array_p));
+		}
+		// PARO EN BLOQUE
+
+		$('#cancelar').on('click',function(){
+			$('#mensajitos').remove();
+			MyJson_paros = {};
+		});
+
+		$("#hora_inicio").keyup(function(event){
+		    if($(this).val().length==2){
+		        $('#minutos_inicio').focus();
+		    }
+		});
+
+		$("#minutos_inicio").keyup(function(event){
+		    if($(this).val().length==2){
+		        $('#hora_fin').focus();
+		    }
+		});
+
+		$("#hora_fin").keyup(function(event){
+		    if($(this).val().length==2){
+		        $('#minutos_fin').focus();
+		    }
+		});
+		$('#num_puestos').css('display','none');
+		$("#maquina_uno").change(function() {
+			id_maq = $('#maquina_uno').val();
+			if((id_maq=="3" || id_maq=="4") && localStorage.getItem("paro_ret")==2 ){
+				$('#num_puestos').css('display','block');
+			}else{
+				$('#num_puestos').css('display','none');
+			}
+			$('#maquina_dos').val(id_maq);
+		});
+		if(localStorage.getItem("paro_ret")=="2"){
+			$('#segunda_maquina').css('display', 'none');
+		}
+		function Agregar_Maquinas(){
+			tp = parseInt(localStorage.getItem("paro_ret"));
+			if (tp==1) {
+				ini = HoraIniTwoPto+":00";
+				fin = HoraFinTwoPto+":00";
+				SacarMaquinas(orden1,orden2,ini,fin,fecha_paro);
+			}else{
+				if(localStorage.getItem("lis_paros_ind_ret")!=null){
+					array02 = JSON.parse(localStorage.getItem("lis_paros_ind_ret"));
+				}
+				json_individual = {
+					"id" : localStorage.getItem("id_paro_ret"),
+					"maquina" : $('#maquina_uno').val(),
+					"nombre" : nombre,
+					"hora_inicio" : HoraIniTwoPto+":00",
+					"hora_fin" : HoraFinTwoPto+":00",
+					"fecha" : fecha_paro,
+					"tipo" : 2,
+				}					
+				array02.push(json_individual);
+				localStorage.setItem("lis_paros_ind_ret",JSON.stringify(array02));
+			};
+		}
+		$('#conservar').on('click',function(){
+			array_paros.push(MyJson_paros);
+			Agregar_Maquinas();
+			var jsontostring = JSON.stringify(array_paros);
+			localStorage.setItem("lis_paros_ret", jsontostring);
+			$('.alert-success').show().delay(5000).fadeOut();
+			$('#mensajitos').remove();
+			window.location = 'paro1.html';
+		});		
+		$('form[name=form_paros]').on('submit',function(evt){	
+			evt.preventDefault();
+			if($('#nombre1_2').val()==""){
+				nombre = $('#nombre1_1').val();	
+			}else{
+				nombre = $('#nombre1_1').val()+"."+$('#nombre1_2').val();	
+			}
+			if($('#nombre2_2').val()==""){
+				nombre2 = $('#nombre2_1').val();	
+			}else{
+				nombre2 = $('#nombre2_1').val()+"."+$('#nombre2_2').val();	
+			}
+			bloque = 1;
+			fecha_paro = "20"+$('#annio').val()+"-"+$('#mes').val()+"-"+$('#dia').val();
+			if(localStorage.getItem("paro_ret")==1 && $('#nombre_2').val()==""){
+				bloque = 0;
+			}
+			if(valida(nombre,nombre2,fecha_paro)==1 && bloque==1){
+				HoraIniTwoPto = $('#hora_inicio').val()+":"+$('#minutos_inicio').val();				
+				HoraFinTwoPto = $('#hora_fin').val()+":"+$('#minutos_fin').val();
+				MyJson_paros = {
+					"id" : localStorage.getItem("id_paro_ret"),
+					"tipo_paro" : localStorage.getItem("paro_ret"),
+					"maquina_uno" : $('#maquina_uno').val(),
+					"nombre_uno" : nombre,
+					"maquina_dos" : $('#maquina_dos').val(),
+					"nombre_dos" : nombre2,
+					"hora_inicio" : HoraIniTwoPto+":00",
+					"hora_fin" : HoraFinTwoPto+":00",
+					"puestos" : $('#puestos').val(),
+					"motivo_paro" : $('#motivo_paro').val(),
+					"fecha" : fecha_paro,
+					"hora" : hora_string,
+					"fecha_ingreso" : fecha_string,
+					"estado" : 1,
+				}
+				b = JSON.parse(localStorage.getItem('lis_paros_ind_ret'));
+				tp = parseInt(localStorage.getItem("paro_ret"));
+				var indicator = 0;
+				var entrada = 0;				
+				if (tp==2 && b!=null) {
+					for (i=0;i<b.length;i++){
+						if(fecha_paro == b[i]['fecha']){
+							if($('#maquina_uno').val() == b[i]['maquina'] && nombre == b[i]['nombre'] ){
+								entrada = 1;
+								if(indicator==0){
+									$('#modalbox').click();
+									indicator = 1;
+									$('#mensajes').append("<div id='mensajitos' ></div>");
+								}						
+								$('#mensajitos').append("<h3 >Esta maquina ya tiene paro en este día, su hora de inicio es: "+b[i]['hora_inicio']+" y su hora fin es: "+b[i]['hora_fin']+"</h3>");
+							}
+						}
+					}
+				}
+				// EN BLOQUE
+				if (tp==1 && b!=null) {
+					for (i=0;i<b.length;i++){
+						if($('#maquina_uno').val() == b[i]['maquina'] && nombre == b[i]['nombre'] || $('#maquina_dos').val() == b[i]['maquina'] && nombre2 == b[i]['nombre'] && fecha_paro == b[i]['fecha']){
+							entrada = 1;
+							if(indicator==0){
+								$('#modalbox').click();
+								indicator = 1;
+								$('#mensajes').append("<div id='mensajitos' ></div>");
+							}						
+							$('#mensajitos').append("<h3 >Esta maquina ya tiene paro en bloque en este día, su hora de inicio es: "+b[i]['hora_inicio']+" y su hora fin es: "+b[i]['hora_fin']+"</h3>");
+						}
+					}
+				}
+				// EN BLOQUE
+
+				if (entrada==0){
+					array_paros.push(MyJson_paros);
+					Agregar_Maquinas();
+					var jsontostring = JSON.stringify(array_paros);
+					localStorage.setItem("lis_paros_ret", jsontostring);
+					$('.alert-success').show().delay(5000).fadeOut();
+					$('#mensajitos').remove();
+					window.location = 'paro1.html';
+				}	
+			}
+			function valida(nombre,nombre2,fechita){
+				var rpta = 1;
+				array_maquinas = JSON.parse(localStorage.getItem('maquinas_ret'));
+				if(localStorage.getItem("paro_ret")==1){
+					if($('#nombre1_1').val()=="" || $('#nombre2_1').val()==""){
+						rpta = 0;
+						$('#error-nombre1').show().delay(5000).fadeOut();
+						$('#error-nombre2').show().delay(5000).fadeOut();
+					}else{
+						if($('#maquina_uno').val() == $('#maquina_dos').val()){
+							if(nombre2 <= nombre){
+								rpta = 0;
+								$('#error-nombre2').show().delay(5000).fadeOut();
+							}
+						}else{
+							rpta = 0;
+							$('#error-maquina2').show().delay(5000).fadeOut();
+							$('#error-nombre2').show().delay(5000).fadeOut();
+						}
+					}
+				}else{
+					var flag = 0;
+					puestos = 0;
+					for(var i=0;i<array_maquinas.length;i++){
+						if(array_maquinas[i].tipomaquina==$('#maquina_uno').val() && array_maquinas[i].nombre==nombre){
+							flag = 1;
+							puestos = array_maquinas[i].num_puestos;
+						}
+					}
+					if (flag!=1){
+						$('#error-nombre1').show().delay(5000).fadeOut();
+						rpta = 0;
+					}else{
+						rpta = 1;
+					}
+					id_maq = $('#maquina_uno').val();
+					if(id_maq=="3" || id_maq=="4"){
+						if($('#puestos').val()==""){
+							rpta = 0;
+							$('#error-puestos').show().delay(5000).fadeOut();							
+						}
+					}
+					if(parseInt($('#puestos').val(),10)>puestos){
+						rpta = 0;
+						$('#error-puestos').show().delay(5000).fadeOut();
+					}
+				}
+				if($('#motivo_paro').val()==""){
+					rpta = 0;
+					$('#error-motivo').show().delay(5000).fadeOut();
+				}				
+				if($('#hora_inicio').val().length!=2 || parseInt($('#hora_inicio').val())>23){
+					rpta = 0;
+					$('#error-hora-inicio').show().delay(5000).fadeOut();
+				}
+				var d = new Date();
+				d.setFullYear(fechita.substring(0,4),fechita.substring(5,7)-1,fechita.substring(8,10));
+				if(d.getMonth() != fechita.substring(5,7)-1 || d.getDate() != fechita.substring(8,10)){
+					rpta = 0;
+					console.log("Fecha no válida.");
+					$('#error-fecha').show().delay(5000).fadeOut();
+				}else{
+					a = parseInt($('#annio').val(),10)
+					b = parseInt(annio_2,10)
+					if($('#annio').val().length!=2 || (a!=b-1 && a!=b && a!=b+1)){
+						rpta = 0;
+						$('#error-annio').show().delay(5000).fadeOut();
+					}
+				}
+				if($('#minutos_inicio').val().length!=2 || parseInt($('#minutos_inicio').val())>59){
+					rpta = 0;
+					$('#error-minutos-inicio').show().delay(5000).fadeOut();
+				}
+				if($('#hora_fin').val().length!=2 || parseInt($('#hora_fin').val())>23){
+					rpta = 0;
+					$('#error-hora-fin').show().delay(5000).fadeOut();
+				}
+				if($('#minutos_fin').val().length!=2 || parseInt($('#minutos_fin').val())>59){
+					rpta = 0;
+					$('#error-minutos-fin').show().delay(5000).fadeOut();
+				}
+				return rpta;
+			}
+		});		
+	});
+</script>
+</body>
+</html>

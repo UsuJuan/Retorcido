@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Ingresar Lectura</title>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+	<div class="text-right">
+		<a href="index.html" class="icono-menu" >
+			MENU <span class="glyphicon glyphicon-align-justify" ></span>
+		</a>
+	</div>
+	<div class="alert alert-danger text-center" id="maquina-repeat" >
+		<h2>MAQUINA REPETIDA</h2>
+	</div>
+	<!-- Button trigger modal -->
+	<button id="modalbox" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#myModal">
+	  	Modal
+	</button>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+		      <div class="modal-header">
+			        <h4 class="modal-title alert alert-info" id="myModalLabel">Mensaje</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<div class="alert alert-warning" id="mensajes" role="alert"></div>
+		      </div>
+		      <div class="modal-footer">
+			        <a href="index.html" name="ok" class="btn btn-primary btn-lg">Ok</a>
+		      </div>
+	    	</div>
+	  	</div>
+	</div>
+	<!-- Modal -->
+	<form class="form-horizontal my_form" role="form" name="form_lectura" action="" method="POST" >
+		<div class="form-group">
+		   	<div class="text-center">	
+		   		<label for="maquina" class="control-label label_grande">MAQUINA</label>
+		   	</div>
+		   	<div class="col-md-4"></div>
+		    <div class="col-sm-1 col-md-4">
+		      	<select name="maquina" id="maquina" class="form-control input_grande" required="required" >
+				</select>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="nombre" class="control-label label_grande">NOMBRE</label>
+		   	</div>
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="nombre" name="nombre" autocomplete="off" >
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="nombre2" name="nombre2" autocomplete="off" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre" role="alert">
+	      		<h2>ERROR!</h2>
+	      	</div>
+	    </div>
+	    <div class="form-group">
+			<div class="text-center">
+		   		<label for="contador" class="control-label label_grande">CONTADOR</label>
+		   	</div>
+		   	<div class="col-md-4"></div>
+		    <div class="col-sm-1 col-md-4">
+		      <input type="number" class="form-control input_grande" id="contador" name="contador">
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-contador" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+		    <div class="col-xs-offset-1 col-sm-offset-3">
+		      <button type="button" class="btn btn-success boton" id="finish" >FINALIZAR</button>
+		      <button type="submit" class="btn btn-primary boton">GUARDAR</button>
+		    </div>
+		</div>
+	</form>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/bootstrap.js" ></script>
+<script>
+	var MyJson_lectura;
+	var array = [];
+	if (localStorage.getItem("lis_parcial_ret")!=null){
+		array = JSON.parse(localStorage.getItem("lis_parcial_ret"));
+		len_lecturas = JSON.parse(localStorage.getItem("lis_parcial_ret")).length;
+	}else{
+		len_lecturas = 0;
+	}
+	if(localStorage.getItem('id_ret')==null){
+		localStorage.setItem('id_ret',1);
+	}
+	// FECHA Y HORA						
+		var fecha = new Date();
+		dia = fecha.getDate();
+		mes = fecha.getMonth()+1;
+		annio = fecha.getFullYear();
+		hora = fecha.getHours();
+		minutos = fecha.getMinutes();	
+		if(dia<10) dia = String("0"+dia);
+		if(mes<10) mes = String("0"+mes);
+		fecha_ingreso = String(annio+"-"+mes+"-"+dia);
+	// FECHA Y HORA
+
+	$(function(){
+	// Tipo preparacion
+	array_tp = JSON.parse(localStorage.getItem("tipo_retorcedoras"));
+	for(var i=0;i<array_tp.length;i++){
+		$('#maquina').append('<option value='+array_tp[i].id+' >'+array_tp[i].descripcion+'</option>');
+	}
+
+	if(localStorage.getItem('turno_ret')==null){
+		window.location = 'lecturamenu.html';
+	}
+
+	if (localStorage.getItem("lis_lec_ret")!=null || localStorage.getItem("tipo_lec_2_ret")=="normal"){
+		$('#mensajitos').remove();
+		$('#mensajes').append("<div id='mensajitos' ></div>");
+		$('#mensajitos').append("<h2 >Necesita subir lectura normal.</h2>");
+		$('#modalbox').click();
+	}
+		
+	// FECHA Y TURNO
+	    my_array = JSON.parse(localStorage.getItem('turnos'));
+    	if((localStorage.getItem('turno_ret')=="2" || localStorage.getItem('turno_ret')=="3") && hora < 21){
+    		fecha.setDate(fecha.getDate()-1);
+    	}
+    	dia = fecha.getDate();
+		mes = fecha.getMonth()+1;
+		annio = fecha.getFullYear();	
+    	if(dia<10) dia = String("0"+dia);
+		if(mes<10) mes = String("0"+mes);	
+		if(hora<10) hora = String("0"+hora);
+		if(minutos<10) minutos = String("0"+minutos);
+		fecha_lectura = String(annio+"-"+mes+"-"+dia);
+		hora_ingreso = String(hora+":"+minutos+":"+"00");
+    // FECHA Y TURNO
+		$('.alert-danger').css('display','none');
+		var metros="";
+		function Valida(nombre){
+			var rpta = 0;
+			var flag_repeat = 0;
+			$('#digitos').remove();
+			maquina = $('#maquina').val();		
+			if(localStorage.getItem('lis_parcial_ret')!=null){
+				parcial = JSON.parse(localStorage.getItem('lis_parcial_ret'));
+				v1 = localStorage.getItem("turno_ret");
+				for (var i=0;i<parcial.length;i++){
+					if(maquina ==parcial[i]['maquina'] && nombre==parcial[i]['nombre'] && v1==parcial[i]['turno']){
+						flag_repeat = 1;
+						rpta = 1;
+						$('#maquina-repeat').show().delay(5000).fadeOut();		
+					}
+				}
+			}
+			if (flag_repeat==0){
+				if ($('#contador').val()==""){
+					rpta = 1;
+					$('#error-contador').show().delay(5000).fadeOut();
+				}else{
+					var flag = 0;
+					array_maquinas = JSON.parse(localStorage.getItem('maquinas_ret'));
+					digitos = parseInt($('#contador').val().length,10);
+					for(var i=0;i<array_maquinas.length;i++){
+						if(array_maquinas[i].tipomaquina==$('#maquina').val() && array_maquinas[i].nombre==nombre){
+							flag = 1;
+							if(array_maquinas[i].digitos!=digitos){
+								$('#error-contador').append('<h2 id="digitos" >'+array_maquinas[i].digitos+' digitos</h2>');
+								$('#error-contador').show().delay(5000).fadeOut();
+								rpta = 1;
+							}
+						}
+					}
+					if (flag!=1){
+						$('#error-nombre').show().delay(5000).fadeOut();
+						rpta = 1;
+					}
+				}
+			}
+			return rpta;
+		}
+
+		function terminar(param1){
+			if($('#nombre2').val()==""){
+				nombre = $('#nombre').val();				
+			}else{
+				nombre = $('#nombre').val()+"."+$('#nombre').val();
+			}
+			if(Valida(nombre)==0){
+				MyJson_lectura = {
+					"id" : localStorage.getItem("id_ret"),
+					"maquina" : $('#maquina').val(),
+					"nombre" : nombre,
+					"contador" : $("#contador").val(),
+					"turno" : localStorage.getItem("turno_ret"),
+					"fecha" : fecha_lectura,
+					"hora" : hora_ingreso,
+					"tipo_lectura" : "PARCIAL",
+					"fecha_ingreso" : fecha_ingreso,
+				}
+				array.push(MyJson_lectura);
+				var jsontostring = JSON.stringify(array);
+				id = parseInt(localStorage.getItem("id_ret"),10);
+				localStorage.setItem('id_ret',id+1);
+				localStorage.setItem("lis_parcial_ret", jsontostring);				
+				if(param1==1){
+					window.location = 'lecturaparcial2.html';					
+				}
+				return true;
+			}			
+			return false;
+		}
+
+		$('form[name=form_lectura]').on('submit',function(evt){
+			evt.preventDefault();	
+			terminar(1);			
+		});
+
+		$('#finish').on('click',function(evt){
+			evt.preventDefault();			
+			if(terminar(2) || ($('#nombre').val()=="" &&  $('#contador').val()=="") ){
+				$('#mensajitos').remove();
+				$('#mensajes').append("<div id='mensajitos' ></div>");
+				$('#mensajitos').append("<h2 >Lectura parcial terminada.</h2>");
+				$('#modalbox').click();
+				localStorage.removeItem('turno_ret');				
+			}
+		});	
+		
+	})
+</script>
+</body>
+</html>

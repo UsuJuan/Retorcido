@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Ingresar datos</title>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+	<div class="text-right">
+		<a href="index.html" class="icono-menu" >
+			MENU <span class="glyphicon glyphicon-align-justify" ></span>
+		</a>
+	</div>
+	<div class="alert alert-success" role="alert">
+		<h3>
+			SE MODIFICÓ CON EXITO.
+		</h3>
+	</div>
+	<form class="form-horizontal my_form" role="form" name="form_lectura_update" action="" method="POST" >
+		<input type="hidden" id="tipo_lectura_update"/>
+		<div class="form-group">
+		   	<div class="text-center">	
+		   		<label for="maquina_upd" class="control-label label_grande">MAQUINA</label>
+		   	</div>
+		   	<div class="col-md-4"></div>
+		    <div class="col-sm-1 col-md-4">
+		      	<select name="maquina_upd" id="maquina_upd" class="form-control input_grande" disabled >
+				</select>
+		    </div>
+		</div>			
+		<div class="form-group">
+		   	<div class="text-center">
+		   		<label for="nombre_upd" class="control-label label_grande">NOMBRE</label>
+		   	</div>
+	   		<div class="col-md-4"></div>
+			<div class="col-sm-1 col-md-4">
+			      <input type="text" class="form-control input_grande" id="nombre_upd" name="nombre_upd" disabled >
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="contador_upd" class="control-label label_grande">CONTADOR</label>
+		   	</div>
+		   	<div class="col-sm-7 col-xs-7">
+		      	<input type="number" class="form-control input_grande" id="contador_upd" name="contador_upd" >
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-3 col-xs-3">
+		      	<input type="number" class="form-control input_grande" id="contador2" name="contador2" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-contador" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+		    <div class="col-xs-offset-1 col-sm-offset-3">
+		      <button type="submit" class="btn btn-primary boton">GUARDAR</button>
+		      <a href="lecturaupdate.html" class="btn btn-danger boton" >ATRAS</a>
+		    </div>
+		</div>
+	</form>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/bootstrap.js" ></script>
+<script>
+	id = localStorage.getItem('id_ret_upd');
+	$(function(){
+		$('.alert-danger').css('display','none');
+		$('.alert-success').css('display','none');
+		// Tipo preparacion
+		array_tb = JSON.parse(localStorage.getItem("tipo_retorcedoras"));
+		for(var i=0;i<array_tb.length;i++){
+			$('#maquina_upd').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
+		}
+
+		if (localStorage.getItem('lis_lec_ret')!=null){
+			pre_upd = JSON.parse(localStorage.getItem('lis_lec_ret'));
+			for(var i=0;i<pre_upd.length;i++){
+				if(pre_upd[i]['id']==id){
+					$('#tipo_lectura_update').val(pre_upd[i]['tipo_lectura']);
+					$('#maquina_upd').val(pre_upd[i]['maquina']);
+					$('#nombre_upd').val(pre_upd[i]['nombre']);
+					contad = pre_upd[i]['contador'].split(".");
+					$('#contador_upd').val(contad[0]);
+					$('#contador2').val(contad[1]);
+				}
+			}
+		}
+
+		if (localStorage.getItem('lis_parcial_ret')!=null){
+			lp = JSON.parse(localStorage.getItem('lis_parcial_ret'));
+			for(var i=0;i<lp.length;i++){
+				if(lp[i]['id']==id){
+					$('#tipo_lectura_update').val(lp[i]['tipo_lectura']);
+					$('#maquina_upd').val(lp[i]['maquina']);
+					$('#nombre_upd').val(lp[i]['nombre']);
+					contad = lp[i]['contador'].split(".");
+					$('#contador_upd').val(contad[0]);
+					$('#contador2').val(contad[1]);
+				}
+			}
+		}
+
+		$('form[name=form_lectura_update]').on('submit',function(event){
+			event.preventDefault();
+			cont2="0";
+			if ($('#contador2').val()!=""){
+				cont2 = $('#contador2').val();
+			}
+			if(Valida() == 0 ){
+				if($('#tipo_lectura_update').val()!="PARCIAL" && localStorage.getItem('lis_lec_ret')!=null ){
+					lis_ret = JSON.parse(localStorage.getItem('lis_lec_ret'));
+					for(var i=0;i<lis_ret.length;i++){
+						if(lis_ret[i]['id']==id){
+							lis_ret[i]['contador'] = $('#contador_upd').val()+"."+cont2;
+							myjson_string = JSON.stringify(lis_ret);
+							localStorage.setItem('lis_lec_ret',myjson_string);
+							$('.alert-success').show().delay(5000).fadeOut();
+							localStorage.removeItem('id_ret_upd');
+							break;
+						}
+					}
+				}else{
+					lp = JSON.parse(localStorage.getItem('lis_parcial_ret'));
+					for(var i=0;i<lp.length;i++){
+						if(lp[i]['id']==id){
+							lp[i]['contador'] = $('#contador_upd').val()+"."+cont2;
+							myjson_string = JSON.stringify(lp);
+							localStorage.setItem('lis_parcial_ret',myjson_string);
+							$('.alert-success').show().delay(5000).fadeOut();
+							localStorage.removeItem('id_ret_upd');
+							break;
+						}
+					}
+				}
+			}
+		});
+
+		function Valida(){
+			var rpta=0;
+			if ($('#contador_upd').val()==""){
+				rpta = 1;
+				$('#error-contador').show().delay(5000).fadeOut();
+			}
+			return rpta;
+		}
+
+	})
+</script>
+</body>
+</html>

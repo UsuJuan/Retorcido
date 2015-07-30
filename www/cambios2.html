@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Cambios</title>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+	<!-- Button trigger modal 1 -->
+	<button id="modalbox" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#myModal">
+	  	Modal
+	</button>
+	<!-- Modal 1 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+		      <div class="modal-header">
+			        <h4 class="modal-title alert alert-warning" id="myModalLabel">Mensaje</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<div class="alert alert-info" id="mensajes" role="alert"></div>
+		      </div>
+		      <div class="modal-footer text-left">
+			        <button type="button" data-dismiss="modal" id="conservar" class="btn-lg btn-primary" >Agregar</button>
+			        <button type="button" data-dismiss="modal" id="cancelar" class="btn-lg btn-danger" >Cancelar</button>
+		      </div>
+	    	</div>
+	  	</div>
+	</div>
+	<!-- Modal 1 -->
+	<div class="text-right">
+		<a href="index.html" class="icono-menu" >
+			MENU <span class="glyphicon glyphicon-align-justify" ></span>
+		</a>
+	</div>
+	<form class="form-horizontal my_form" role="form" name="form_cambios" action="" method="POST" >
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="dia" class="control-label label_grande">FECHA</label>
+		   	</div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" id="dia" name="dia" autocomplete="off" placeholder="Día" >
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" id="mes" name="mes" autocomplete="off" placeholder="Mes" >
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande" id="annio" name="annio" autocomplete="off" placeholder="Año" >
+		    </div>
+		     <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-fecha" role="alert">
+		      		<h2>ERROR!</h2>
+		      	</div>
+		    </div
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="maquina" class="control-label label_grande">MAQUINA</label>
+		   	</div>
+		   	<div class="col-md-3"></div>
+		    <div class="col-sm-10 col-md-6">
+		    	<select name="maquina" id="maquina" class="form-control input_grande" >
+				</select>		      
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-maquina" role="alert">
+		      		<h2>SELECCIONAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="nombre1_1" class="control-label label_grande">NOMBRE</label>
+		   	</div>
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="nombre1_1" name="nombre1_1" autocomplete="off" >
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="nombre1_2" name="nombre1_2" autocomplete="off" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre" role="alert">
+	      		<h2>ERROR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+			<div class="text-center">
+		    	<label for="linea" class="control-label label_grande">LINEA</label>
+		    </div>
+		    <div class="col-md-3"></div>
+		    <div class="col-sm-10 col-md-6">
+		      	<select name="linea" id="linea" class="form-control input_grande" >
+				</select>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="titulo" class="control-label label_grande">TITULO</label>
+		   	</div>
+		   	<div class="col-sm-12 col-xs-12">
+		      	<input type="number" class="form-control input_grande" id="titulo" name="titulo" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-titulo" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="codigo" class="control-label label_grande">CODIGO</label>
+		   	</div>
+		   	<div class="col-sm-12 col-xs-12">
+		      	<input type="number" class="form-control input_grande" id="codigo" name="codigo" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-codigo" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="tor" class="form-group">
+			<div class="text-center">
+		   		<label for="torsion" class="control-label label_grande">TORSION</label>
+		   	</div>
+		   	<div class="col-sm-12 col-xs-12">
+		      	<input type="number" class="form-control input_grande" id="torsion" name="torsion" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-torsion" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="vel_pro" class="form-group">
+			<div class="text-center">
+		   		<label for="vp" class="control-label label_grande">VEL. PROD.</label>
+		   	</div>
+		   	<div class="col-sm-12 col-xs-12">
+		      	<input type="number" class="form-control input_grande" id="vp" name="vp" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-vp" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="rpm_huso" class="form-group">
+			<div class="text-center">
+		   		<label for="rpm" class="control-label label_grande">RPM/HUSO</label>
+		   	</div>
+		   	<div class="col-sm-12 col-xs-12">
+		      	<input type="number" class="form-control input_grande" id="rpm" name="rpm" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-rpm" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="parte_aire" class="form-group">
+			<div class="text-center">
+		   		<label for="aire" class="control-label label_grande">AIRE</label>
+		   	</div>
+		   	<div class="col-sm-12 col-xs-12">
+		      	<input type="number" class="form-control input_grande" id="aire" name="aire" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-aire" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="parte_gas" class="form-group">
+			<div class="text-center">
+		   		<label for="gas" class="control-label label_grande">GAS</label>
+		   	</div>
+		   	<div class="col-sm-12 col-xs-12">
+		      	<input type="number" class="form-control input_grande" id="gas" name="gas" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-gas" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="contador" class="control-label label_grande">CONTADOR</label>
+		   	</div>
+		   	<div class="col-md-3"></div>
+		    <div class="col-sm-10 col-md-6">
+		      <input type="number" class="form-control input_grande numero" id="contador" name="contador" autocomplete="off" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-contador" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="hora" class="control-label label_grande">HORA</label>
+		   	</div>
+		   	<div class="col-sm-1 col-xs-1"></div>
+		    <div class="col-sm-4 col-xs-4">
+		      <input type="number" class="form-control input_grande numero" maxlength="5" id="hora" name="hora" autocomplete="off" placeholder="HH" >		      
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">:</label>
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		    	<input type="number" class="form-control input_grande numero" maxlength="5" id="minutos" name="minutos" autocomplete="off" placeholder="MM" >
+		    </div>
+		    <div class="col-sm-2 col-xs-2"></div>
+		    <div class="row">
+		    	<div class="col-sm-2 col-xs-2"></div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="alert alert-danger text-center" id="error-hora" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+			    <div class="col-sm-2 col-xs-2"></div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="alert alert-danger text-center" id="error-minutos" role="alert">
+			      		<h2>ERROR!</h2>
+			      	</div>
+			    </div>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <div class="col-sm-offset-3">
+		      <a href="cambiomenu.html" class="btn btn-danger boton" >ATRAS</a>
+		      <button type="submit" class="btn btn-primary boton">GUARDAR</button>		      
+		    </div>
+		</div>
+	</form>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/bootstrap.js" ></script>
+<script>	
+	var Json_cambios_ret;
+	var array = [];
+	if (localStorage.getItem("lis_cambios_ret")!=null){
+		my_array = JSON.parse(localStorage.getItem("lis_cambios_ret"));
+		array = JSON.parse(localStorage.getItem("lis_cambios_ret"));
+	}
+	if(localStorage.getItem('id_cam_ret')==null){
+		localStorage.setItem('id_cam_ret',1);
+	}
+	// FECHA Y HORA
+		var fecha = new Date();
+		hora = fecha.getHours();
+		dia = fecha.getDate();
+		mes = fecha.getMonth()+1;
+		annio = fecha.getFullYear();
+		if(dia<10) dia = String("0"+dia);
+		if(mes<10) mes = String("0"+mes);		
+		fecha_string = String(annio+"-"+mes+"-"+dia);		
+		minutos = fecha.getMinutes();
+		if(hora<10)	hora = String("0"+hora);
+		if(minutos<10) minutos = String("0"+minutos);
+		hora_string = String(hora+":"+minutos+":"+"00");
+	// FECHA Y HORA
+
+	$(function(){
+		// Tipo de retorcedoras
+		array_tp = JSON.parse(localStorage.getItem("tipo_retorcedoras"));
+		for(var i=0;i<array_tp.length;i++){
+			$('#maquina').append('<option value='+array_tp[i].id+' >'+array_tp[i].descripcion+'</option>');
+		}
+		annio_2 = String(annio).substring(2,4);
+		$('#dia').val(dia);
+		$('#mes').val(mes);
+		$('#annio').val(annio_2);
+		$('.alert-danger').css('display','none');
+
+	    $("#hora").keyup(function(event){
+		    if($(this).val().length==2){
+		        $('#minutos').focus();
+		    }
+		});
+
+		// Lineas
+		array_lineas = JSON.parse(localStorage.getItem("lineas"));
+		for(var i=0;i<array_lineas.length;i++){
+			$('#linea').append('<option value='+array_lineas[i].id+' >'+array_lineas[i].descripcion+'</option>');
+		}
+
+		$('#cancelar').on('click',function(){
+			$('#mensajitos').remove();
+		});
+
+		$('#conservar').on('click',function(){
+			array.push(Json_cambios_ret);
+			var jsontostring = JSON.stringify(array);
+			localStorage.setItem("lis_cambios_ret", jsontostring);
+			$('.alert-success').show().delay(5000).fadeOut();
+			$('#mensajitos').remove();
+			window.location = 'cambiomenu.html';
+		});	
+
+		/* COMBOS LETRA INICIAL MAQUINA */		
+		$("#maquina").change(function() {
+			id_maq = $('#maquina').val();
+			codigo = "";
+			for(var i=0;i<array_tp.length;i++){
+				if(id_maq==array_tp[i].id){
+					codigo = array_tp[i].codigo;
+				}
+			}
+			switch(codigo){
+			    case "10":
+			    	$('#tor').css('display','block');
+			    	$('#vel_pro').css('display','none');
+			    	$('#rpm_huso').css('display','block');
+			    	$('#parte_aire').css('display','none');
+			    	$('#parte_gas').css('display','none');
+			        break;
+			    case "11":			        
+			    	$('#tor').css('display','block');
+			    	$('#vel_pro').css('display','none');
+			    	$('#rpm_huso').css('display','block');
+			        $('#parte_aire').css('display','none');
+			    	$('#parte_gas').css('display','none');
+			        break;
+			    case "12":			        
+			    	$('#tor').css('display','none');
+			    	$('#vel_pro').css('display','block');
+			    	$('#rpm_huso').css('display','none');
+			    	$('#parte_aire').css('display','block');
+			    	$('#parte_gas').css('display','block');
+			        break;
+			    case "13":			        
+			    	$('#tor').css('display','none');
+			    	$('#vel_pro').css('display','block');
+			    	$('#rpm_huso').css('display','none');
+			    	$('#parte_aire').css('display','none');
+			    	$('#parte_gas').css('display','none');
+			        break;
+			}
+		});
+		$("#maquina").change();
+		/* COMBOS LETRA INICIAL MAQUINA */
+
+		$('form[name=form_cambios]').on('submit',function(evt){
+			evt.preventDefault();	
+			fec = "20"+$('#annio').val()+"-"+$('#mes').val()+"-"+$('#dia').val();
+			if($('#nombre1_2').val()==""){
+				nombre = $('#nombre1_1').val();	
+			}else{
+				nombre = $('#nombre1_1').val()+"."+$('#nombre1_2').val();	
+			}
+			if(valida(nombre,fec)==1){
+				HoraTwoPto = $('#hora').val()+":"+$('#minutos').val();
+				Json_cambios_ret = {
+					"id" : localStorage.getItem("id_cam_ret"),
+					"maquina" : $('#maquina').val(),
+					"nombre" : nombre,					
+					"linea" : $("#linea").val(),
+					"titulo" : $("#titulo").val(),
+					"codigo" : $("#codigo").val(),
+					"torsion" : $("#torsion").val(),
+					"vp" : $("#vp").val(),
+					"rpm" : $("#rpm").val(),
+					"aire" : $("#aire").val(),
+					"gas" : $("#gas").val(),
+					"contador" : $('#contador').val(),
+					"hora_cambio" : HoraTwoPto+":00",
+					"fecha" : fec,
+					"fecha_ingreso":fecha_string,
+					"hora" : hora_string,
+					"estado" :1,
+				}
+				var indicator = 0;
+				var entrada = 0;
+				ac = JSON.parse(localStorage.getItem('lis_cambios_ret'));
+				if (ac!=null) {
+					for (i=0;i<ac.length;i++){
+						if(fec == ac[i]['fecha']){
+							if($('#maquina').val() == ac[i]['maquina'] && nombre == ac[i]['nombre']){
+								entrada = 1;
+								if(indicator==0){
+									$('#modalbox').click();
+									indicator = 1;
+									$('#mensajes').append("<div id='mensajitos' ></div>");
+								}						
+								$('#mensajitos').append("<h5 >Esta maquina ya tiene cambio en este día, su hora es: "+ac[i]['hora_cambio']+".</h5>");
+							}
+						}
+					}
+				}
+				if (entrada==0){
+					array.push(Json_cambios_ret);
+					var jsontostring = JSON.stringify(array);
+					localStorage.setItem("lis_cambios_ret", jsontostring);
+					id_cam_ret = parseInt(localStorage.getItem("id_cam_ret"));
+					localStorage.setItem('id_cam_ret',id_cam_ret+1);
+					window.location = "cambiomenu.html";
+				}
+			}
+
+			function valida(nombre,fec){
+				var rpta = 1;				
+				if($('#nombre1_1').val()==""){
+					rpta = 0;
+					$('#error-nombre').show().delay(5000).fadeOut();
+				}else{
+					array_maquinas = JSON.parse(localStorage.getItem('maquinas_ret'));
+					var flag = 0;
+					for(var i=0;i<array_maquinas.length;i++){
+						if(array_maquinas[i].tipomaquina==$('#maquina').val() && array_maquinas[i].nombre==nombre){
+							flag = 1;
+						}
+					}
+					if (flag!=1){
+						$('#error-nombre').show().delay(5000).fadeOut();
+						rpta = 0;
+					}else{
+						rpta = 1;
+					}
+				}
+				VerError("titulo");
+				VerError("codigo");
+				switch(codigo){
+				    case "10":
+				    	VerError('torsion');
+				    	VerError('rpm');
+				        break;
+				    case "11":			        
+				    	VerError('torsion');
+				    	VerError('rpm');
+				        break;
+				    case "12":				    	
+				    	VerError('vp');	
+				    	VerError('aire');
+				    	VerError('gas');
+				        break;
+				    case "13":				    	
+				    	VerError('vp');
+				        break;
+				}
+				VerError("contador");
+				if($('#hora').val().length!=2 || parseInt($('#hora').val())>23){
+					rpta = 0;
+					$('#error-hora').show().delay(5000).fadeOut();
+				}
+				if($('#minutos').val().length!=2 || parseInt($('#minutos').val())>59){
+					rpta = 0;
+					$('#error-minutos').show().delay(5000).fadeOut();
+				}
+				var d = new Date();
+				d.setFullYear(fec.substring(0,4),fec.substring(5,7)-1,fec.substring(8,10));
+				if(d.getMonth() != fec.substring(5,7)-1 || d.getDate() != fec.substring(8,10)){
+					rpta = 0;
+					console.log("Fecha no válida.");
+					$('#error-fecha').show().delay(5000).fadeOut();
+				}else{
+					a = parseInt($('#annio').val(),10)
+					b = parseInt(annio_2,10)
+					if($('#annio').val().length!=2 || (a!=b-1 && a!=b && a!=b+1)){
+						rpta = 0;
+						$('#error-annio').show().delay(5000).fadeOut();
+					}
+				}
+				function VerError(campo){
+					if($(String('#'+campo)).val()==""){
+						$(String('#error-'+campo)).show().delay(5000).fadeOut();
+						rpta = 0;
+					}
+				}
+				return rpta;				
+			}
+
+			/*function VerVacio(campo){
+				valor = $(String('#'+campo)).val();
+				if($(String('#'+campo)).val()==""){
+					valor = "0";
+				}
+				return valor;
+			}*/
+
+		});
+	})
+</script>
+</body>
+</html>
