@@ -135,7 +135,7 @@
 			<div class="text-center">
 		   		<label for="puestos" class="control-label label_grande">PUESTOS</label>
 		   	</div>
-		   	<div class="col-sm-6 col-xs-6">
+		   	<div class="col-sm-12 col-xs-12">
 		      	<input type="number" class="form-control input_grande" id="puestos" name="puestos" autocomplete="off" >
 		    </div>
 		</div>
@@ -470,6 +470,23 @@
 						if($('#maquina_uno').val() == $('#maquina_dos').val()){
 							if(nombre2 <= nombre){
 								rpta = 0;
+								$('#error-nombre2').show().delay(5000).fadeOut();
+							}
+							test1 = 0;
+							test2 = 0;
+							for(var i=0;i<array_maquinas.length;i++){
+								if(array_maquinas[i].tipomaquina==$('#maquina_uno').val() && array_maquinas[i].nombre==nombre){
+									test1 = 1;
+								}
+								if(array_maquinas[i].tipomaquina==$('#maquina_uno').val() && array_maquinas[i].nombre==nombre2){
+									test2 = 1;
+								}
+							}
+							if (test1 == 1 && test2 == 1){
+								rpta = 1;
+							}else{
+								rpta = 0;
+								$('#error-nombre1').show().delay(5000).fadeOut();
 								$('#error-nombre2').show().delay(5000).fadeOut();
 							}
 						}else{
