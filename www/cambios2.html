@@ -74,13 +74,16 @@
 			<div class="text-center">
 		   		<label for="nombre1_1" class="control-label label_grande">NOMBRE</label>
 		   	</div>
-		   	<div class="col-sm-6 col-xs-6">
+		   	<div class="col-sm-4 col-xs-4">
+		   		<select id="ini_nombre" class="form-control input_grande" ></select>
+		    </div>
+		   	<div class="col-sm-4 col-xs-4">
 		      	<input type="number" class="form-control input_grande" id="nombre1_1" name="nombre1_1" autocomplete="off" >
 		    </div>
 		    <div class="col-sm-1 col-xs-1">
 		    	<label class="control-label label_grande">.</label>
 		    </div>
-		    <div class="col-sm-5 col-xs-5">
+		    <div class="col-sm-3 col-xs-3">
 		      	<input type="number" class="form-control input_grande" id="nombre1_2" name="nombre1_2" autocomplete="off" >
 		    </div>
 		</div>
@@ -154,16 +157,10 @@
 		</div>
 		<div id="parte_peso" class="form-group">
 			<div class="text-center">
-		   		<label for="peso1" class="control-label label_grande">PESO C.</label>
+		   		<label for="peso1" class="control-label label_grande">PESO C. (gr.)</label>
 		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
+		   	<div class="col-sm-12 col-xs-12">
 		      	<input type="number" class="form-control input_grande" id="peso1" name="peso1" autocomplete="off" >
-		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		      	<input type="number" class="form-control input_grande" id="peso2" name="peso2" autocomplete="off" >
 		    </div>
 		    <div class="row">
 		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-peso1" role="alert">
@@ -325,7 +322,14 @@
 			window.location = 'cambiomenu.html';
 		});	
 
-		/* COMBOS LETRA INICIAL MAQUINA */		
+		/* COMBOS LETRA INICIAL MAQUINA */	
+		ini_m = JSON.parse(localStorage.getItem('maquinas_ret_inicial'));
+		for(var i=0;i<ini_m.length;i++){
+			id_maq = $('#maquina').val();
+			if(ini_m[i].tipo == id_maq){
+				$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+			}
+		}	
 		$("#maquina").change(function() {
 			id_maq = $('#maquina').val();
 			codigo = "";
@@ -368,22 +372,27 @@
 			    	$('#parte_peso').css('display','block');
 			        break;
 			}
+			$('#ini_nombre option').remove();
+		 	for(var i=0;i<ini_m.length;i++){
+				if(ini_m[i].tipo == id_maq){
+					$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+				}
+			}
 		});
 		$("#maquina").change();
-		/* COMBOS LETRA INICIAL MAQUINA */
+		/* COMBOS LETRA INICIAL MAQUINA */		
 
 		$('form[name=form_cambios]').on('submit',function(evt){
 			evt.preventDefault();	
 			fec = "20"+$('#annio').val()+"-"+$('#mes').val()+"-"+$('#dia').val();
 			if($('#nombre1_2').val()==""){
-				nombre = $('#nombre1_1').val();	
+				name = $('#nombre1_1').val();	
 			}else{
-				nombre = $('#nombre1_1').val()+"."+$('#nombre1_2').val();	
+				name = $('#nombre1_1').val()+"."+$('#nombre1_2').val();	
 			}
-			if($('#peso2').val()==""){
-				peso = $('#peso1').val();	
-			}else{
-				peso = $('#peso1').val()+"."+$('#peso2').val();	
+			nombre = name
+			if ($("#ini_nombre").val()!=null){
+				nombre = $("#ini_nombre").val()+nombre;
 			}
 			if(valida(nombre,fec)==1){
 				HoraTwoPto = $('#hora').val()+":"+$('#minutos').val();
@@ -399,7 +408,7 @@
 					"rpm" : $("#rpm").val(),
 					"aire" : $("#aire").val(),
 					"gas" : $("#gas").val(),
-					"peso" : peso,
+					"peso" : $('#peso1').val(),
 					"contador" : $('#contador').val(),
 					"hora_cambio" : HoraTwoPto+":00",
 					"fecha" : fec,

@@ -72,6 +72,10 @@
 			lineas_array = JSON.stringify(json);
 			localStorage.setItem("lineas", lineas_array);
 		};
+		var mostrar_inicial_maquinas = function(json){
+			maquinas_inicial_array = JSON.stringify(json);
+			localStorage.setItem("maquinas_ret_inicial", maquinas_inicial_array);
+		};
 		var mostrar_motivos_paro = function(json){
 			motivos_paro_array = JSON.stringify(json);
 			localStorage.setItem("motivos_paro", motivos_paro_array);
@@ -100,6 +104,16 @@
 			  	.fail(function() {
 			    	$('.alert-danger').show().delay(5000).fadeOut();
 			    	console.log('fallo');
+			  	});	
+
+			$.getJSON('http://10.240.17.56/transferencias/bajar/inicial/maquinas/retorcido/?callback=?', mostrar_inicial_maquinas)
+				.done(function() {
+					$('.alert-success').show().delay(5000).fadeOut();
+					console.log('exito');
+			  	})
+			  	.fail(function() {
+			  		$('.alert-danger').show().delay(5000).fadeOut();
+			  		console.log('fallo');
 			  	});	
 
 			$.getJSON('http://10.240.17.56/transferencias/bajar/tiporetorcedora/?callback=?', mostrar_tipo_retorcedora)
