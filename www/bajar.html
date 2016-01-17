@@ -13,16 +13,7 @@
 			MENU <span class="glyphicon glyphicon-align-justify" ></span>
 		</a>
 	</div>
-	<div id="error-red" class="alert alert-danger text-center" style="margin-top:3em;" role="alert">
-		<h3>
-			Error de coneccion.
-		</h3>
-	</div>
-	<div id="error-lecturas" class="alert alert-danger text-center" style="margin-top:3em;" role="alert">
-		<h3>
-			Necesita subir lecturas.
-		</h3>
-	</div>
+	<div class="alert alert-danger text-center" style="margin-top:3em;" role="alert"></div>
 	<div class="alert alert-success text-center" style="margin-top:3em;" role="alert">
 		<h3>
 			Los datos se bajaron con exito.
@@ -42,22 +33,30 @@
 
 	$(function(){	
 
-		$('.alert-danger').css('display','none');
-		$('.alert-success').css('display','none');
-		$('#bajar').css('display','none');
+		$('.alert-danger').fadeOut();
+		$('.alert-success').fadeOut();
+		$('#bajar').fadeOut();
+
+		function ShowError(message){
+			$('.alert-danger h3').remove();
+			$('.alert-danger').append('<h3 >'+message+'</h3>');
+			$('.alert-danger').fadeIn();
+		}
 
 		if(localStorage.getItem("lis_lec_ret")==null && localStorage.getItem("lis_parcial_ret")==null){
-			$.getJSON('http://10.240.17.56/transferencias/coneccion/retorcedora/?callback=?')
+			$.getJSON('http://192.168.1.35/transferencias/coneccion/retorcedora/?callback=?')
 			.done(function(response) {
 				console.log('exito');
-				localStorage.setItem("turno_val_ret", response.turno);
-				$('#bajar').css('display','inline');
+				if(localStorage.getItem('turno_ret')==null){
+					localStorage.setItem("turno_val_ret", response.turno);
+				}
+				$('#bajar').fadeIn();
 			})
 			.fail(function() {
-				$('#error-red').show().delay(5000).fadeOut();
+				ShowError("Error en la coneccion de red.");
 			});
 		}else{
-			$('#error-lecturas').show().delay(5000).fadeOut();
+			ShowError('Necesita subir lecturas.');
 		}
 
 		var mostrar_maquinas = function(json){
@@ -86,7 +85,7 @@
 		};
 		$('form').on('submit',function(evt){
 			evt.preventDefault();
-			$.getJSON('http://10.240.17.56/transferencias/bajar/maquinas/retorcedora/?callback=?', mostrar_maquinas)
+			$.getJSON('http://192.168.1.35/transferencias/bajar/maquinas/retorcedora/?callback=?', mostrar_maquinas)
 				.done(function() {
 					$('.alert-success').show().delay(5000).fadeOut();
 					console.log('exito');
@@ -96,7 +95,7 @@
 			  		console.log('fallo');
 			  	});			
 
-			$.getJSON('http://10.240.17.56/transferencias/bajar/turnos/?callback=?', mostrar_turnos)
+			$.getJSON('http://192.168.1.35/transferencias/bajar/turnos/?callback=?', mostrar_turnos)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -106,7 +105,7 @@
 			    	console.log('fallo');
 			  	});	
 
-			$.getJSON('http://10.240.17.56/transferencias/bajar/inicial/maquinas/retorcido/?callback=?', mostrar_inicial_maquinas)
+			$.getJSON('http://192.168.1.35/transferencias/bajar/inicial/maquinas/retorcido/?callback=?', mostrar_inicial_maquinas)
 				.done(function() {
 					$('.alert-success').show().delay(5000).fadeOut();
 					console.log('exito');
@@ -116,7 +115,7 @@
 			  		console.log('fallo');
 			  	});	
 
-			$.getJSON('http://10.240.17.56/transferencias/bajar/tiporetorcedora/?callback=?', mostrar_tipo_retorcedora)
+			$.getJSON('http://192.168.1.35/transferencias/bajar/tiporetorcedora/?callback=?', mostrar_tipo_retorcedora)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -126,7 +125,7 @@
 			    	console.log('fallo');
 			  	});	
 
-			$.getJSON('http://10.240.17.56/transferencias/bajar/lineas/?callback=?', mostrar_lineas)
+			$.getJSON('http://192.168.1.35/transferencias/bajar/lineas/?callback=?', mostrar_lineas)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -136,7 +135,7 @@
 			    	console.log('fallo');
 			  	});
 
-			$.getJSON('http://10.240.17.56/transferencias/bajar/motivosparo/?callback=?', mostrar_motivos_paro)
+			$.getJSON('http://192.168.1.35/transferencias/bajar/motivosparo/?callback=?', mostrar_motivos_paro)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
