@@ -136,7 +136,7 @@
 				},
 				dataType: 'json',		
 			})
-			.done(function() {
+			.done(function(response) {
 				$('#loading').fadeOut();
 				if(response.msg=='ok'){
 					console.log("success ok");
