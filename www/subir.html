@@ -67,7 +67,7 @@
 			$('.alert-danger').fadeIn();
 		}
 
-		$.getJSON('http://192.168.1.35/transferencias/coneccion/retorcedora/?callback=?')
+		$.getJSON('http://10.240.17.56/transferencias/coneccion/retorcedora/?callback=?')
 		.done(function() {
 			console.log('exito');
 			$('#subir').fadeIn();
@@ -126,7 +126,7 @@
 			}
 
 			$.ajax({
-				url: 'http://192.168.1.35/transferencias/subir/retorcedora/',
+				url: 'http://10.240.17.56/transferencias/subir/retorcedora/',
 				type: 'POST',
 				crossDomain: true,
 				data: {					
